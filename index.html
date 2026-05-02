@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura | Coming Soon</title>
-    <!-- 使用免费商用的 Google Fonts: Montserrat (300细体, 400常规) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         body {
@@ -14,23 +13,29 @@
             display: flex;
             justify-content: center;
             align-items: center; 
-            /* 优先使用 Montserrat，后备使用系统免检无衬线字体 */
             font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             overflow: hidden;
             position: relative;
         }
 
-        /* 左上角品牌文本 */
-        .brand-name {
+        /* --- 新修改：左上角字母 Logo 样式 --- */
+        .brand-logo-top {
             position: absolute;
-            top: 40px;
-            left: 50px;
-            font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: #000;
-            opacity: 0.8;
+            top: 40px;    /* 距离顶部距离 */
+            left: 50px;   /* 距离左侧距离 */
+            width: 70px;  /* 字母 Logo 的宽度，可根据需要调整 */
+            height: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .brand-logo-top:hover {
+            opacity: 1;
+        }
+
+        .brand-logo-top img {
+            width: 100%;
+            display: block;
         }
 
         .main-wrapper {
@@ -39,15 +44,10 @@
             animation: fadeIn 2s ease-out;
         }
 
-        /* Logo 组合区域 */
-        .logo-group {
-            margin-bottom: 55px; /* 控制 Logo 组与下方文字的距离 */
-        }
-
-        /* 眼镜 Logo 容器 */
+        /* 中央大 Logo 区域 */
         .logo-container {
             width: 260px; 
-            margin: 0 auto 20px auto; /* 与下方字母 Logo 保持 20px 间距 */
+            margin: 0 auto 50px auto; 
             display: flex;
             justify-content: center;
         }
@@ -58,20 +58,6 @@
             display: block;
         }
 
-        /* 字母 Logo 容器 */
-        .letter-logo {
-            width: 250px; /* 字母 Logo 建议稍微小一点，形成视觉层级 */
-            margin: 0 auto;
-            opacity: 0.95;
-        }
-
-        .letter-logo img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* 主标题 COMING SOON */
         h1 {
             font-size: 1.7rem; 
             font-weight: 400;
@@ -83,12 +69,11 @@
             white-space: nowrap;
         }
 
-        /* 副标题 STAY TUNED... */
         .sub-text {
             font-size: 1.05rem; 
-            font-weight: 300; /* 调细字重以拉开对比 */
+            font-weight: 300;
             letter-spacing: 1.5em;
-            margin-top: 22px; /* 紧凑间距 */
+            margin-top: 22px;
             text-transform: uppercase;
             color: #666;
             padding-left: 1.5em;
@@ -97,7 +82,6 @@
             align-items: center;
         }
 
-        /* 动态点动画 */
         .dots {
             display: inline-block;
             width: 4em;
@@ -127,11 +111,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 移动端优化 */
+        /* 移动端适配 */
         @media (max-width: 768px) {
-            .brand-name { top: 20px; left: 25px; font-size: 0.7rem; }
+            .brand-logo-top { 
+                top: 25px; 
+                left: 25px; 
+                width: 50px; /* 手机端缩小字母 Logo */
+            }
             .logo-container { width: 180px; }
-            .letter-logo { width: 65px; }
             h1 { font-size: 1.1rem; letter-spacing: 1.1em; padding-left: 1.1em; }
             .sub-text { font-size: 0.75rem; letter-spacing: 0.75em; padding-left: 0.75em; }
         }
@@ -139,20 +126,15 @@
 </head>
 <body>
 
-    <!-- 左上角标识 -->
-    <div class="brand-name">Aura</div>
+    <!-- 左上角字母 Logo (替换了原来的文本) -->
+    <div class="brand-logo-top">
+        <img src="letter-logo.png" alt="Aura Brand Icon">
+    </div>
 
     <div class="main-wrapper">
-        <div class="logo-group">
-            <!-- 第一个 Logo: 眼镜 -->
-            <div class="logo-container">
-                <img src="logo.png" alt="Aura Graphics Logo">
-            </div>
-            
-            <!-- 第二个 Logo: 字母 -->
-            <div class="letter-logo">
-                <img src="letter-logo.png" alt="Aura Letter Logo">
-            </div>
+        <!-- 中央只保留眼镜 Logo -->
+        <div class="logo-container">
+            <img src="logo.png" alt="Aura Main Logo">
         </div>
         
         <h1>COMING SOON</h1>
