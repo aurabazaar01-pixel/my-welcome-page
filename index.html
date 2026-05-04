@@ -13,20 +13,18 @@
             font-family: 'Montserrat', sans-serif;
             color: #fff;
             overflow: hidden;
-            background-color: #1a1a1a; 
         }
 
-        /* 背景层 - 包含预加载颜色和淡入动画 */
+        /* 背景层 - 保持 source: 3 的层级逻辑确保可见 */
         .background {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('bg.jpg') no-repeat center center;
+            background: url('bg.jpg') no-repeat center center;
             background-size: cover;
             z-index: -2;
-            animation: fadeIn 2s ease-in;
         }
 
+        /* 遮罩层 */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -34,10 +32,10 @@
             z-index: -1;
         }
 
-        /* 左上角字母 Logo - 电脑版位置 */
+        /* 左上角字母 Logo - 根据标注图：更靠左、更靠上 */
         .top-left-logo {
             position: absolute;
-            top: 60px; 
+            top: 60px; /* 精确像素定位控制 */
             left: 140px; 
             width: 130px;
             filter: brightness(0) invert(1);
@@ -68,21 +66,20 @@
         .status-text {
             font-size: 3.4rem;
             font-weight: 600;
-            letter-spacing: 1.2em; 
+            letter-spacing: 1.2em; /* 保持极宽间距 */
             text-transform: uppercase;
-            margin-bottom: 10px; 
+            margin-bottom: 10px; /* 进一步收紧与下方口号的距离 */
             padding-left: 1.2em;
             opacity: 0.95;
         }
 
-        /* 电脑版调整：让底下的字排列更长 */
+        /* stay simple stay true - 字体排列宽点 */
         .footer-slogan {
             font-size: 1.1rem;
             font-weight: 300;
-            /* 进一步拉大字间距，响应“这个字再长点”的要求 */
-            letter-spacing: 1.4em; 
+            letter-spacing: 0.8em; /* 显著增加字间距，响应“排列宽点”的要求 */
             text-transform: lowercase;
-            padding-left: 1.4em;
+            padding-left: 0.8em;
             opacity: 0.8;
         }
 
@@ -91,33 +88,24 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* 移动端适配 - 锁定不改动 */
+        /* 移动端适配 */
         @media (max-width: 768px) {
-            .top-left-logo { 
-                top: 30px; 
-                left: 30px; 
-                width: 90px; 
-                opacity: 0.95; 
-            }
+            .top-left-logo { top: 20px; left: 20px; width: 60px; }
             .center-logo { width: 180px; margin-bottom: 20px; }
+            
+            /* 手机版保持 AURA IS COMING 宽过下方口号 */
             .status-text { 
-                font-size: 1rem; 
-                letter-spacing: 0.4em; 
-                padding-left: 0.4em;
+                font-size: 0.95rem; 
+                letter-spacing: 0.5em; 
+                padding-left: 0.5em;
                 margin-bottom: 6px;
-                width: 100%;
+                width: 95%;
             }
             .footer-slogan { 
                 font-size: 0.65rem; 
-                /* 手机版字间距保持原有紧凑感，不随电脑版拉长 */
-                letter-spacing: 0.2em; 
-                padding-left: 0.2em;
-                width: 90%;
+                letter-spacing: 0.25em; 
+                padding-left: 0.25em;
+                width: 85%;
                 margin: 0 auto;
             }
         }
@@ -128,17 +116,21 @@
     <div class="background"></div>
     <div class="overlay"></div>
 
+    <!-- 左上角字母 Logo -->
     <img src="letter-logo.png" alt="Aura Logo" class="top-left-logo">
 
     <div class="main-container">
+        <!-- 中心 Logo -->
         <div class="center-logo">
             <img src="logo.png" alt="Aura Graphics Logo">
         </div>
 
+        <!-- 主状态文案 -->
         <div class="status-text">
             AURA IS COMING
         </div>
 
+        <!-- 底部口号 -->
         <div class="footer-slogan">
             stay simple stay true
         </div>
