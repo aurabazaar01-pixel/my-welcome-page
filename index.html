@@ -10,7 +10,7 @@
             margin: 0; 
             padding: 0; 
             box-sizing: border-box;
-            /* 1. 全局禁止文字选择：让页面看起来像一个整体，不可拖选文字 */
+            /* 全局禁止文字选择 */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -24,7 +24,7 @@
             overflow: hidden;
         }
 
-        /* 背景层：维持 source: 4 逻辑 */
+        /* 背景层[cite: 4, 6] */
         .background {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -40,7 +40,7 @@
             z-index: -1;
         }
 
-        /* 左上角字母 Logo */
+        /* 左上角字母 Logo[cite: 6] */
         .top-left-logo {
             position: absolute;
             top: 60px; 
@@ -49,7 +49,6 @@
             filter: brightness(0) invert(1);
             opacity: 0.9;
             z-index: 2;
-            /* 2. 禁止图片被拖拽或右键保存（部分移动端） */
             pointer-events: none;
             -webkit-user-drag: none;
         }
@@ -63,38 +62,37 @@
             text-align: center;
         }
 
-        /* 中心图形 Logo */
+        /* 中心图形 Logo[cite: 6] */
         .center-logo {
-            width: 480px;
+            width: 400px;
             margin-bottom: 35px;
             filter: brightness(0) invert(1);
             opacity: 0.95;
             animation: fadeInDown 1.5s ease-out;
-            /* 禁止图片选择/拖拽 */
             pointer-events: none;
             -webkit-user-drag: none;
         }
         .center-logo img { width: 100%; display: block; }
 
-        /* AURA IS COMING */
+        /* 修改文案：Hang tight, we are coming[cite: 6] */
         .status-text {
-            font-size: 3.4rem;
+            font-size: 3.5rem; /* 文案缩短，字号回升 */
             font-weight: 600;
-            letter-spacing: 1.2em; 
+            letter-spacing: 0.3em; /* 重新拉开间距，增强视觉延伸感 */
             text-transform: uppercase;
             margin-bottom: 10px; 
-            padding-left: 1.2em;
-            opacity: 0.95;
+            padding-left: 1.1em;
+            opacity: 0.90;
         }
 
-        /* 电脑版：维持拉长效果 */
+        /* 底部口号[cite: 6] */
         .footer-slogan {
             font-size: 1.1rem;
             font-weight: 300;
             letter-spacing: 1.4em; 
             text-transform: lowercase;
             padding-left: 1.4em;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         @keyframes fadeInDown {
@@ -102,33 +100,29 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 移动端适配：锁定 source: 4 效果[cite: 4] */
+        /* 移动端适配[cite: 4, 6] */
         @media (max-width: 768px) {
             .top-left-logo { 
                 top: 30px; 
                 left: 30px; 
                 width: 90px; 
-                opacity: 0.95; 
             }
             .center-logo { width: 180px; margin-bottom: 20px; }
             .status-text { 
-                font-size: 1rem; 
-                letter-spacing: 0.4em; 
-                padding-left: 0.4em;
-                margin-bottom: 6px;
-                width: 100%;
+                font-size: 0.9rem; 
+                letter-spacing: 0.35em; 
+                padding-left: 0.35em;
+                width: 95%;
             }
             .footer-slogan { 
                 font-size: 0.65rem; 
                 letter-spacing: 0.25em; 
                 padding-left: 0.25em;
-                width: 90%;
-                margin: 0 auto;
             }
         }
     </style>
 </head>
-<body oncontextmenu="return false;" ondragstart="return false;"> <!-- 3. 禁止右键和禁止拖拽 -->
+<body oncontextmenu="return false;" ondragstart="return false;">
 
     <div class="background"></div>
     <div class="overlay"></div>
@@ -141,7 +135,7 @@
         </div>
 
         <div class="status-text">
-            AURA IS COMING
+            Hang tight, we’re coming
         </div>
 
         <div class="footer-slogan">
