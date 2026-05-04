@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura | Stay Simple</title>
+    <title>Aura | Coming Soon</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,141 +11,120 @@
         body, html {
             height: 100%;
             font-family: 'Montserrat', sans-serif;
+            background-color: #000;
             color: #fff;
             overflow: hidden;
-            background-color: #000;
         }
 
-        /* 基础背景图 */
-        .background {
+        /* 基础背景层 */
+        .bg-layer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
+            /* 重点：本地测试建议使用相对路径，确保图片就在 HTML 旁边 */
             background: url('bg.jpg') no-repeat center center;
             background-size: cover;
             z-index: -3;
         }
 
-        /* 整体调色遮罩 */
+        /* 遮罩层 */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
             z-index: -2;
         }
 
-        /* 磨砂玻璃效果层：只模糊外侧 */
-        .frosted-frame {
+        /* 模拟磨砂边框：使用巨大的内发光阴影替代 clip-path */
+        .frame-effect {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            background: rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 0 100px 50px rgba(0,0,0,0.5); /* 黑色渐变边框 */
+            pointer-events: none;
             z-index: -1;
-            /* 创建中间透明的“孔”，调整百分比可改变清晰区域大小 */
-            clip-path: polygon(
-                0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 
-                8% 8%, 8% 92%, 92% 92%, 92% 8%, 8% 8%
-            );
         }
 
-        /* 可视范围边框线 */
-        .border-line {
+        /* 可视边框线 */
+        .visual-border {
             position: fixed;
             top: 8%; left: 8%; right: 8%; bottom: 8%;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             z-index: 1;
+            pointer-events: none;
         }
 
-        /* 内容容器 */
-        .main-container {
+        .main-content {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 8%;
         }
 
         /* 左上角字母 Logo */
         .top-left-logo {
             position: absolute;
-            top: 11%;
-            left: 11%;
-            width: 170px;
+            top: 11%; left: 11%;
+            width: 45px;
             filter: brightness(0) invert(1);
             opacity: 0.8;
         }
 
-        /* 中心 Logo：缩小尺寸 */
+        /* 中心大 Logo */
         .center-logo {
-            width: 450px; /* 从 480px 缩小 */
-            margin-bottom: 30px;
+            width: 200px;
+            margin-bottom: 25px;
             filter: brightness(0) invert(1);
-            opacity: 0.95;
             animation: fadeInDown 1.5s ease-out;
         }
 
-        .center-logo img { width: 100%; display: block; }
-
-        /* AURA IS COMING：缩小字体和间距 */
+        /* AURA IS COMING：三行大字体 */
         .status-text {
-            font-size: 3.5rem; /* 从 3.4rem 缩小 */
+            font-size: 2.8rem;
             font-weight: 600;
-            letter-spacing: 0.5em; /* 缩小字间距 */
+            line-height: 1.1;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            margin-bottom: 40px;
-            padding-left: 0.5em;
-            opacity: 0.8;
+            margin-bottom: 35px;
+            opacity: 0.95;
         }
+        .status-text span { display: block; }
 
-        /* 底部口号：改为横向排列 */
+        /* 横向排列 Slogan */
         .footer-slogan {
-            font-size: 1.3rem;
-            font-weight: 100;
-            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
             text-transform: lowercase;
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(-15px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .frosted-frame { clip-path: none; backdrop-filter: blur(5px); }
-            .border-line { top: 5%; left: 5%; right: 5%; bottom: 5%; }
-            .top-left-logo { top: 7%; left: 7%; width: 40px; }
-            .center-logo { width: 160px; }
-            .status-text { font-size: 0.8rem; letter-spacing: 0.3em; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background"></div>
+    <div class="bg-layer"></div>
     <div class="overlay"></div>
-    <div class="frosted-frame"></div>
-    <div class="border-line"></div>
+    <div class="frame-effect"></div>
+    <div class="visual-border"></div>
 
-    <div class="main-container">
-        <!-- 左上角字母 Logo -->
-        <img src="letter-logo.png" alt="Aura Icon" class="top-left-logo">
+    <div class="main-content">
+        <img src="letter-logo.png" alt="Icon" class="top-left-logo">
 
-        <!-- 中心眼镜 Logo -->
         <div class="center-logo">
-            <img src="logo.png" alt="Aura Graphics Logo">
+            <img src="logo.png" alt="Aura Logo" style="width:100%;">
         </div>
 
-        <!-- 状态文案 -->
         <div class="status-text">
-            AURA IS COMING
+            <span>AURA</span>
+            <span>IS</span>
+            <span>COMING</span>
         </div>
 
-        <!-- 横向口号 -->
         <div class="footer-slogan">
             stay simple stay true
         </div>
