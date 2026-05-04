@@ -13,24 +13,20 @@
             font-family: 'Montserrat', sans-serif;
             color: #fff;
             overflow: hidden;
-            /* 增加一个和背景图相近的深灰色，减少白屏或黑屏闪烁感 */
             background-color: #1a1a1a; 
         }
 
-        /* 背景层 */
+        /* 背景层 - 包含预加载颜色和淡入动画 */
         .background {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* 优化：增加 linear-gradient 预加载颜色，在图片出来前先有颜色填充 */
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                         url('bg.jpg') no-repeat center center;
             background-size: cover;
             z-index: -2;
-            /* 增加淡入动画，让背景出来时更平滑，不显得突兀 */
             animation: fadeIn 2s ease-in;
         }
 
-        /* 遮罩层 */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -38,7 +34,7 @@
             z-index: -1;
         }
 
-        /* 左上角字母 Logo - 电脑版维持 source: 4 设置 */
+        /* 左上角字母 Logo - 电脑版位置 */
         .top-left-logo {
             position: absolute;
             top: 60px; 
@@ -79,13 +75,14 @@
             opacity: 0.95;
         }
 
-        /* stay simple stay true */
+        /* 电脑版调整：让底下的字排列更长 */
         .footer-slogan {
             font-size: 1.1rem;
             font-weight: 300;
-            letter-spacing: 0.8em; 
+            /* 进一步拉大字间距，响应“这个字再长点”的要求 */
+            letter-spacing: 1.4em; 
             text-transform: lowercase;
-            padding-left: 0.8em;
+            padding-left: 1.4em;
             opacity: 0.8;
         }
 
@@ -99,20 +96,17 @@
             to { opacity: 1; }
         }
 
-        /* 移动端适配优化 */
+        /* 移动端适配 - 锁定不改动 */
         @media (max-width: 768px) {
-            /* 1. 调大手机版字母 Logo：width 从 60px 增加到 90px，位置微调 */
             .top-left-logo { 
                 top: 30px; 
                 left: 30px; 
                 width: 90px; 
-                opacity: 0.95; /* 增加一点对比度 */
+                opacity: 0.95; 
             }
-            
             .center-logo { width: 180px; margin-bottom: 20px; }
-            
             .status-text { 
-                font-size: 1rem; /* 稍微调大一点点手机字号 */
+                font-size: 1rem; 
                 letter-spacing: 0.4em; 
                 padding-left: 0.4em;
                 margin-bottom: 6px;
@@ -120,6 +114,7 @@
             }
             .footer-slogan { 
                 font-size: 0.65rem; 
+                /* 手机版字间距保持原有紧凑感，不随电脑版拉长 */
                 letter-spacing: 0.2em; 
                 padding-left: 0.2em;
                 width: 90%;
