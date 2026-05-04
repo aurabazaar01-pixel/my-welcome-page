@@ -6,7 +6,16 @@
     <title>Aura | Stay Simple</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box;
+            /* 1. 全局禁止文字选择：让页面看起来像一个整体，不可拖选文字 */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
 
         body, html {
             height: 100%;
@@ -15,7 +24,7 @@
             overflow: hidden;
         }
 
-        /* 1. 背景层：完全恢复你之前解决缓冲问题的版本 */
+        /* 背景层：维持 source: 4 逻辑 */
         .background {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -24,7 +33,6 @@
             z-index: -2;
         }
 
-        /* 2. 遮罩层 */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -32,15 +40,18 @@
             z-index: -1;
         }
 
-        /* 左上角字母 Logo：位置保持 source: 4 设置 */
+        /* 左上角字母 Logo */
         .top-left-logo {
             position: absolute;
             top: 60px; 
             left: 140px; 
-            width: 130px;
+            width: 180px;
             filter: brightness(0) invert(1);
             opacity: 0.9;
             z-index: 2;
+            /* 2. 禁止图片被拖拽或右键保存（部分移动端） */
+            pointer-events: none;
+            -webkit-user-drag: none;
         }
 
         .main-container {
@@ -59,6 +70,9 @@
             filter: brightness(0) invert(1);
             opacity: 0.95;
             animation: fadeInDown 1.5s ease-out;
+            /* 禁止图片选择/拖拽 */
+            pointer-events: none;
+            -webkit-user-drag: none;
         }
         .center-logo img { width: 100%; display: block; }
 
@@ -73,11 +87,11 @@
             opacity: 0.95;
         }
 
-        /* 3. 电脑版微调：仅增加字间距，让这行字排列更长 */
+        /* 电脑版：维持拉长效果 */
         .footer-slogan {
             font-size: 1.1rem;
             font-weight: 300;
-            letter-spacing: 1.4em; /* 响应标注：让字排列再长点 */
+            letter-spacing: 1.4em; 
             text-transform: lowercase;
             padding-left: 1.4em;
             opacity: 0.8;
@@ -88,7 +102,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 4. 移动端适配：完全锁定 source: 4 效果，不作任何改动 */
+        /* 移动端适配：锁定 source: 4 效果[cite: 4] */
         @media (max-width: 768px) {
             .top-left-logo { 
                 top: 30px; 
@@ -114,7 +128,7 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;" ondragstart="return false;"> <!-- 3. 禁止右键和禁止拖拽 -->
 
     <div class="background"></div>
     <div class="overlay"></div>
